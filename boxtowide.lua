@@ -1,0 +1,61 @@
+-- This script changes the aspect ratio of all 4:3 videos to 16:9
+-- It does so by first checking if the file is a video by doing a
+-- file extension check, then checks the video parameter aspect ratio
+-- after that, if the aspect ratio is 4:3 it changes it to 16:9 then 
+-- ends the script.
+-- Big thanks to Argon-, I couldn't have done it without his help.
+-- Also thanks to autoload authors, specifically for these parts:
+-- function Set(t), EXTENSIONS, function get_extension(path)
+
+local msg = require 'mp.msg'
+local utils = require 'mp.utils'
+
+function Set (t)
+	local set = {}
+	for _, v in pairs(t) do set[v] = true end
+	return set
+end
+
+EXTENSIONS = Set {
+	'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp'
+}
+
+function get_extension(path)
+	match = string.match(path, "%.([^%.]+)$" )
+	if match == nil then
+		return "nomatch"
+	else
+		return match
+	end
+end
+
+function setBoxRatio(name, value)
+	if value ~= nil then
+		if value >= 1.30 and value <= 1.39 then
+			mp.set_property("video-aspect", "16:9")
+			msg.info("Aspect-ratio changed from 4:3 to 16:9")
+		else
+			msg.info("Aspect-ratio unchanged, video is not 4:3.")
+		end
+		
+		mp.unobserve_property(setBoxRatio)
+		msg.info("Finished check, no longer observing aspect-ratio and ended script.")
+	end
+end
+
+function prepareRatioCheck()
+	local path = mp.get_property("path", "")
+	local dir, filename = utils.split_path(path)
+
+	if EXTENSIONS[string.lower(get_extension(filename))] then
+		mp.set_property("video-aspect", "-1")
+		msg.info("Aspect-ratio has been reset to default to initialize ratio check.")
+		
+		mp.observe_property("video-params/aspect", "number", setBoxRatio)
+		msg.info("Observing aspect-ratio value...")
+	else
+		msg.info("Not video file, script didn't run.")
+	end
+end
+
+mp.register_event("file-loaded", prepareRatioCheck)

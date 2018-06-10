@@ -17,7 +17,7 @@ function Set (t)
 end
 
 EXTENSIONS = Set {
-	'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp'
+	'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp', 'ts'
 }
 
 function get_extension(path)

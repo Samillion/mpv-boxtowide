@@ -31,7 +31,7 @@ end
 
 function setBoxRatio(name, value)
 	if value ~= nil then
-		if value >= 1.30 and value <= 1.39 then
+		if (value >= 1.30) and (value <= 1.39) then
 			mp.set_property("video-aspect", "16:9")
 			msg.info("Aspect-ratio changed from 4:3 to 16:9")
 		else

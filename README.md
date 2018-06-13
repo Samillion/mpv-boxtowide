@@ -15,9 +15,9 @@ You'll still be able to manually change the aspect ratio afterwards during playb
 
 **Preview of a 4:3 video changed to 16:9**
 
-![mpv-boxtowide preview](https://raw.githubusercontent.com/Samillion/mpv-boxtowide/master/mpv-boxtowide.png)
+![mpv-boxtowide preview](https://raw.githubusercontent.com/Samillion/mpv-boxtowide/master/mpv-boxtowide-demo.png)
 
-**Can it be done with a simpler script?**
+**Can it be done with an even simpler script?**
 
 Yes, definitely. I've added checks that aren't really necessary. For example, the file extension check. I only wanted this script to run if the file being opened with mpv is a video file, so I added a file extension check in the initiation part of the script. To put it in layman's terms "If file is video, run script, otherwise, don't run script".
 

@@ -21,4 +21,6 @@ You'll still be able to manually change the aspect ratio afterwards during playb
 
 Yes, definitely. I've added checks that aren't really necessary. For example, the file extension check. I only wanted this script to run if the file being opened with mpv is a video file, so I added a file extension check in the initiation part of the script. To put it in layman's terms "If file is video, run script, otherwise, don't run script".
 
-The other unnecessary step I've taken is using `mp.unobserve_property(setBoxRatio)` once the aspect ratio check is done. There is no real need to use `mp.unobserve_property` here, however, I felt like it would be a waste of resources, if the property was being observed throughout video play even after the aspect ratio check and change are done.
+The other unnecessary step (kind of) I've taken is using `mp.unobserve_property(setBoxRatio)` once the aspect ratio check is done. There is no real need to use `mp.unobserve_property` here, however, I felt like it would be a waste of resources, if the property was being observed throughout video play even after the aspect ratio check and change are done.
+
+The other and main reason I used `mp.unobserve_property(setBoxRatio)` is to allow manually changing the aspect ratio as I explained earlier. If it were kept active, every time you try to manually change it back to 4:3 aspect ratio, the script would trigger and change it to 16:9 instantly. I wanted the option to revert back to 4:3 aspect ratio remain available, not completely removed.

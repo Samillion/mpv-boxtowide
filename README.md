@@ -11,7 +11,7 @@ This script changes `--video-aspect` to `-1` (default) to accurately check and c
 
 You'll still be able to manually change the aspect ratio afterwards during playback. For example if you have a keybind set within `input.conf` to cycle through aspect ratio values like:
 
-`Ctrl+a cycle-values video-aspect "16:9" "4:3" "2.35:1" "-1"`
+`cycle-values video-aspect "16:9" "4:3" "2.35:1" "16:10"`
 
 **Preview of a 4:3 video changed to 16:9**
 

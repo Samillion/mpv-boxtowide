@@ -5,6 +5,14 @@ Its intended purpose is for video files or libraries with old 4:3 aspect ratio c
 
 Works well with a mixed aspect ratio playlist. It will only change the aspect ratio of 4:3 video files, leaving the rest to their default aspect ratio.
 
+**How to install:**
+
+Simply place `boxtowide.lua` in the corresponding mpv scripts location of your operating system:
+
+- Windows: `%APPDATA%\mpv\scripts\` or `C:\users\USERNAME\AppData\Roaming\mpv\scripts\`
+- Linux: `~/.config/mpv/scripts/` or `/home/USER/.config/mpv/scripts/`
+- Mac: `~/.config/mpv/scripts/` or `/Users/USER/.config/mpv/scripts/`
+
 **Note:**
 
 This script changes `--video-aspect` to `-1` (default) to accurately check and change aspect ratio if needed. If you have something in `mpv.conf`, scripts or in commandline that changes `--video-aspect` or `--video-params/aspect`, it will be affected.

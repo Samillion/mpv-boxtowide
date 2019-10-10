@@ -13,11 +13,11 @@ Simply place `boxtowide.lua` in the corresponding mpv scripts location of your o
 - Mac: `~/.config/mpv/scripts/` or `/Users/USERNAME/.config/mpv/scripts/`
 
 # Changes to mpv configuration made by the script
-This script changes `--video-aspect` to `-1` (default) to accurately check and change aspect ratio if needed. If you have something in `mpv.conf`, scripts or in commandline that changes `--video-aspect` or `--video-params/aspect`, it will be affected.
+This script changes `--video-aspect-override` to `-1` (default) to accurately check and change aspect ratio if needed. If you have something in `mpv.conf`, scripts or in commandline that changes `--video-aspect-override` or `--video-params/aspect`, it will be affected.
 
 You'll still be able to manually change the aspect ratio afterwards during playback. For example if you have a keybind set within `input.conf` to cycle through aspect ratio values like:
 
-`CTRL+a cycle-values video-aspect "16:9" "4:3" "2.35:1" "16:10"`
+`CTRL+a cycle-values video-aspect-override "16:9" "16:10" "4:3" "2.35:1"`
 
 The script doesn't change or alter configuration in other files, so removing the `boxtowide.lua` script from the mpv scripts folder is all that is needed to uninstall/disable.
 

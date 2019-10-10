@@ -32,7 +32,7 @@ end
 function setBoxRatio(name, value)
 	if value ~= nil then
 		if (value >= 1.28) and (value <= 1.39) then
-			mp.set_property("video-aspect", "16:9")
+			mp.set_property("video-aspect-override", "16:9")
 			msg.info("Aspect-ratio changed from 4:3 to 16:9")
 		else
 			msg.info("Aspect-ratio unchanged, video is not 4:3.")
@@ -48,7 +48,7 @@ function prepareRatioCheck()
 	local dir, filename = utils.split_path(path)
 
 	if EXTENSIONS[string.lower(get_extension(filename))] then
-		mp.set_property("video-aspect", "-1")
+		mp.set_property("video-aspect-override", "-1")
 		msg.info("Aspect-ratio has been reset to default to initialize ratio check.")
 		
 		mp.observe_property("video-params/aspect", "number", setBoxRatio)

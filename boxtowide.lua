@@ -47,7 +47,7 @@ function prepareRatioCheck()
 	local path = mp.get_property("path", "")
 	local dir, filename = utils.split_path(path)
 
-	if EXTENSIONS[string.lower(get_extension(filename))] then
+	if EXTENSIONS[string.lower(get_extension(filename))] or string.match(string.lower(path), "^(https?://)") then
 		mp.set_property("video-aspect-override", "-1")
 		msg.info("Aspect-ratio has been reset to default to initialize ratio check.")
 		

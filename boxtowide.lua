@@ -23,7 +23,7 @@ EXTENSIONS = Set {
 function get_extension(path)
 	match = string.match(path, "%.([^%.]+)$" )
 	if match == nil then
-		return "nomatch"
+		return ''
 	else
 		return match
 	end

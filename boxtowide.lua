@@ -1,11 +1,17 @@
--- This script changes the aspect ratio of all 4:3 videos to 16:9
--- It does so by first checking if the file is a video by doing a
--- file extension check, then checks the video parameter aspect ratio
--- after that, if the aspect ratio is 4:3 it changes it to 16:9 then 
--- ends the script.
--- Big thanks to Argon-, I couldn't have done it without his help.
--- Also thanks to autoload authors, specifically for these parts:
--- function Set(t), EXTENSIONS, function get_extension(path)
+--[[
+
+This script changes the aspect ratio of all 4:3 videos to 16:9.
+
+It does so by first checking if the file is a video by doing a
+file extension check or if it's a video stream with ytdl, then
+checks the video parameter aspect ratio, if the aspect ratio is
+4:3 it changes it to 16:9 then ends the script.
+
+Big thanks to Argon-, I couldn't have done it without his help.
+Also thanks to autoload authors, specifically for these parts:
+function Set(t), EXTENSIONS, function get_extension(path)
+
+--]]
 
 local msg = require 'mp.msg'
 local utils = require 'mp.utils'

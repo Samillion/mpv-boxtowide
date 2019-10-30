@@ -16,17 +16,17 @@ function Set(t), EXTENSIONS, function get_extension(path)
 local msg = require 'mp.msg'
 local utils = require 'mp.utils'
 
-function Set (t)
+local function Set (t)
 	local set = {}
 	for _, v in pairs(t) do set[v] = true end
 	return set
 end
 
-EXTENSIONS = Set {
+local EXTENSIONS = Set {
 	'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp', 'ts'
 }
 
-function get_extension(path)
+local function get_extension(path)
 	match = string.match(path, "%.([^%.]+)$" )
 	if match == nil then
 		return ''
@@ -35,7 +35,7 @@ function get_extension(path)
 	end
 end
 
-function setBoxRatio(name, value)
+local function setBoxRatio(name, value)
 	if value ~= nil then
 		if (value >= 1.28) and (value <= 1.39) then
 			mp.set_property("video-aspect-override", "16:9")
@@ -49,7 +49,7 @@ function setBoxRatio(name, value)
 	end
 end
 
-function prepareRatioCheck()
+local function prepareRatioCheck()
 	local path = mp.get_property("path", "")
 	local dir, filename = utils.split_path(path)
 

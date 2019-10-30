@@ -25,3 +25,5 @@ The script doesn't change or alter configuration in other files, so removing the
 A screenshot of mpv running a 4:3 aspect ratio video that has been changed automatically to 16:9 aspect ratio on Windows 10.
 
 ![mpv-boxtowide preview](https://raw.githubusercontent.com/Samillion/mpv-boxtowide/master/mpv-boxtowide-demo.png)
+
+![mpv-boxtowide cli preview](https://raw.githubusercontent.com/Samillion/mpv-boxtowide/master/mpv-boxtowide-demo-cli.png)

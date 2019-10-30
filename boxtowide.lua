@@ -26,7 +26,7 @@ local EXTENSIONS = Set {
 	'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp', 'ts'
 }
 
-local function get_extension(path)
+local function getExtension(path)
 	match = string.match(path, "%.([^%.]+)$" )
 	if match == nil then
 		return ''
@@ -45,7 +45,7 @@ local function setBoxRatio(name, value)
 		end
 		
 		mp.unobserve_property(setBoxRatio)
-		msg.info("Finished check, no longer observing aspect-ratio and ended script.")
+		msg.info("Finished check, script no longer running.")
 	end
 end
 
@@ -53,7 +53,7 @@ local function prepareRatioCheck()
 	local path = mp.get_property("path", "")
 	local dir, filename = utils.split_path(path)
 
-	if EXTENSIONS[string.lower(get_extension(filename))] or string.match(string.lower(path), "^(https?://)") then
+	if EXTENSIONS[string.lower(getExtension(filename))] or string.match(string.lower(path), "^(https?://)") then
 		mp.set_property("video-aspect-override", "-1")
 		msg.info("Aspect-ratio has been reset to default to initialize ratio check.")
 		

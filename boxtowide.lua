@@ -13,6 +13,12 @@ function Set(t), EXTENSIONS, function get_extension(path)
 
 --]]
 
+-- Set this to false to disable the script
+local ratioFix = true
+
+-- Set this to false to disable resetting aspect ratio to original for images that could be in video playlists/folders.
+local imagesFix = true
+
 local msg = require 'mp.msg'
 local utils = require 'mp.utils'
 
@@ -24,6 +30,10 @@ end
 
 local EXTENSIONS = Set {
 	'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp', 'ts'
+}
+
+local EXTENSIONS_IMAGES = Set {
+    'jpg', 'jpeg', 'png', 'tif', 'tiff', 'gif', 'webp', 'svg', 'bmp'
 }
 
 local function getExtension(path)
@@ -59,9 +69,15 @@ local function prepareRatioCheck()
 		
 		mp.observe_property("video-params/aspect", "number", setBoxRatio)
 		msg.info("Observing aspect-ratio value...")
+		
+	elseif EXTENSIONS_IMAGES[string.lower(getExtension(filename))] and imagesFix then
+		mp.set_property("video-aspect-override", "-1")
+		msg.info("Image file detected. Aspect ratio has been reset to original.")
 	else
 		msg.info("Not video file, script didn't run.")
 	end
 end
 
-mp.register_event("start-file", prepareRatioCheck)
+if ratioFix then
+	mp.register_event("start-file", prepareRatioCheck)
+end

@@ -23,10 +23,3 @@ This script adds parameters to mpv, such as `--video-aspect-override` to `-1` (d
 You'll still be able to manually change the aspect ratio afterwards during playback. For example if you have a keybind set within `input.conf` to cycle through aspect ratio values like:
 
 `CTRL+a cycle-values video-aspect-override "16:9" "16:10" "4:3" "2.35:1"`
-
-# Preview/Demo
-A screenshot of mpv running a 4:3 aspect ratio video that has been changed automatically to 16:9 aspect ratio on Windows 10.
-
-![mpv-boxtowide preview](https://i.postimg.cc/ncXdMVCV/mpv-boxtowide-demo.png)
-
-![mpv-boxtowide cli preview](https://i.postimg.cc/VNfnr4D9/mpv-boxtowide-demo-cli.png)

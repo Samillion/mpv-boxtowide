@@ -25,4 +25,4 @@ You'll still be able to manually change the aspect ratio afterwards during playb
 `CTRL+a cycle-values video-aspect-override "16:9" "16:10" "4:3" "2.35:1"`
 
 ## Preview
-![Terminal](https://github.com/user-attachments/assets/3462928c-123a-404e-83c6-d5005bc44d19)
+![Terminal](https://github.com/user-attachments/assets/ae05fb4d-2aca-4137-81db-7abd4c25f5dc)

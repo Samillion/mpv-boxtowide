@@ -7,18 +7,10 @@ More info: https://github.com/Samillion/mpv-boxtowide
 
 --]]
 
-local extVideos = {
+local videoExt = {
 	'3g2', '3gp', 'avi', 'flv', 'm2ts', 'm4v', 'mj2', 'mkv', 'mov',
 	'mp4', 'mpeg', 'mpg', 'ogv', 'rmvb', 'ts', 'webm', 'wmv', 'y4m'
 }
-
-local extImages = {	
-	'avif', 'bmp', 'gif', 'j2k', 'jp2', 'jpeg', 'jpg', 'jxl', 'png',
-	'svg', 'tga', 'tif', 'tiff', 'webp'
-}
-
--- true to ignore changing aspect ratio for images
-local ignoreImages = true
 
 local msg = require 'mp.msg'
 local utils = require 'mp.utils'
@@ -29,14 +21,10 @@ local function Set (t)
 	return set
 end
 
-local function getExtension(value)
-    return value:match("%.([^%.]+)$") or ''
-end
-
 local function setBoxRatio(name, value)
 	if value ~= nil then
 		if (value >= 1.28) and (value <= 1.39) then
-			mp.set_property("video-aspect-override", "16:9")
+			mp.set_property("file-local-options/video-aspect-override", "16:9")
 			msg.info("Aspect-ratio changed from 4:3 to 16:9")
 		end
 		
@@ -44,18 +32,14 @@ local function setBoxRatio(name, value)
 	end
 end
 
-extVideos, extImages = Set(extVideos), Set(extImages)
-
-local function prepareRatioCheck()
+local function prepareCheck()
 	local path = mp.get_property("path", "")
 	local dir, filename = utils.split_path(path)
+	local ext = filename:lower():match("%.([^%.]+)$") or ''
 
-	if extVideos[string.lower(getExtension(filename))] or string.match(path, "^%a+://") then
-		mp.set_property("video-aspect-override", "-1")
+	if Set(videoExt)[ext] or string.match(path, "^%a+://") then
 		mp.observe_property("video-params/aspect", "number", setBoxRatio)
-	elseif extImages[string.lower(getExtension(filename))] and ignoreImages then
-		mp.set_property("video-aspect-override", "-1")
 	end
 end
 
-mp.register_event("start-file", prepareRatioCheck)
+mp.register_event("start-file", prepareCheck)

@@ -6,20 +6,7 @@ Big thanks to Argon-, I couldn't have done it without his help.
 More info: https://github.com/Samillion/mpv-boxtowide
 
 --]]
-
-local videoExt = {
-	'3g2', '3gp', 'avi', 'flv', 'm2ts', 'm4v', 'mj2', 'mkv', 'mov',
-	'mp4', 'mpeg', 'mpg', 'ogv', 'rmvb', 'ts', 'webm', 'wmv', 'y4m'
-}
-
 local msg = require 'mp.msg'
-local utils = require 'mp.utils'
-
-local function Set (t)
-	local set = {}
-	for _, v in pairs(t) do set[v] = true end
-	return set
-end
 
 local function setBoxRatio(name, value)
 	if value ~= nil then
@@ -34,12 +21,12 @@ end
 
 local function prepareCheck()
 	local path = mp.get_property("path", "")
-	local dir, filename = utils.split_path(path)
-	local ext = filename:lower():match("%.([^%.]+)$") or ''
 
-	if Set(videoExt)[ext] or string.match(path, "^%a+://") then
-		mp.observe_property("video-params/aspect", "number", setBoxRatio)
+	if not mp.get_property_native('current-tracks/video/image') and not mp.get_property_native('current-tracks/video/albumart') then
+		if mp.get_property_native('vid') or string.match(path, "^%a+://") then
+			mp.observe_property("video-params/aspect", "number", setBoxRatio)
+		end
 	end
 end
 
-mp.register_event("start-file", prepareCheck)
+mp.register_event("video-reconfig", prepareCheck)

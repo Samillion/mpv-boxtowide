@@ -17,12 +17,5 @@ Simply place `boxtowide.lua` in the corresponding mpv scripts location of your o
 ## How to uninstall
 The script doesn't write or alter configuration files, so removing the `boxtowide.lua` script from the mpv scripts folder is all that is needed to uninstall/disable.
 
-## Changes to mpv made by the script
-This script changes parameters in mpv, such as `--video-aspect-override` to `-1` (default) to accurately check and change aspect ratio if needed. If you have something in `mpv.conf`, scripts or in commandline that changes `--video-aspect-override` or `--video-params/aspect`, it will be affected.
-
-You'll still be able to manually change the aspect ratio afterwards during playback. For example if you have a keybind set within `input.conf` to cycle through aspect ratio values like:
-
-`CTRL+a cycle-values video-aspect-override "16:9" "16:10" "4:3" "2.35:1"`
-
 ## Preview
 ![Terminal](https://github.com/user-attachments/assets/ae05fb4d-2aca-4137-81db-7abd4c25f5dc)

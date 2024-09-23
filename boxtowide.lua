@@ -12,11 +12,9 @@ local utils = require 'mp.utils'
 local function setBoxRatio(name, value)
 	if value ~= nil then
 		if not mp.get_property_native('current-tracks/video/image') and not mp.get_property_native('current-tracks/video/albumart') then
-			if mp.get_property_native('vid') then
-				if (value >= 1.28) and (value <= 1.39) then
-					mp.set_property("file-local-options/video-aspect-override", "16:9")
-					msg.info("Aspect-ratio changed from 4:3 to 16:9")
-				end
+			if (value >= 1.28) and (value <= 1.39) then
+				mp.set_property("file-local-options/video-aspect-override", "16:9")
+				msg.info("Aspect-ratio changed from 4:3 to 16:9")
 			end
 		end
 		

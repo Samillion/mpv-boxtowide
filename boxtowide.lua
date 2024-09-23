@@ -7,7 +7,6 @@ More info: https://github.com/Samillion/mpv-boxtowide
 
 --]]
 local msg = require 'mp.msg'
-local utils = require 'mp.utils'
 
 local function setBoxRatio(name, value)
 	if value ~= nil then
@@ -30,11 +29,13 @@ end
 
 local function prepareCheck()
 	local path = mp.get_property("path", "")
-	local dir, filename = utils.split_path(path)
-	local ext = filename:lower():match("%.([^%.]+)$") or ''
-	local blacklist = { 'apng', 'avif', 'gif', 'webp' }
+	local ext = path:match("%.([^%.]+)$") or 'nomatch'
+	local whitelist = Set {
+		'3g2', '3gp', 'avi', 'flv', 'm2ts', 'm4v', 'mj2', 'mkv', 'mov',
+		'mp4', 'mpeg', 'mpg', 'ogv', 'rmvb', 'ts', 'webm', 'wmv', 'y4m'
+	}
 	
-	if not Set(blacklist)[ext] then
+	if whitelist[ext:lower()] or path:match('^%a+://') then
 		mp.observe_property("video-params/aspect", "number", setBoxRatio)
 	end
 end

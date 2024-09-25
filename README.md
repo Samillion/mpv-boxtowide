@@ -14,6 +14,18 @@ Simply place `boxtowide.lua` in the corresponding mpv scripts location of your o
 - Linux: `~/.config/mpv/scripts/` or `/home/USERNAME/.config/mpv/scripts/`
 - Mac: `~/.config/mpv/scripts/` or `/Users/USERNAME/.config/mpv/scripts/`
 
+> [!NOTE]
+> More information about files locations can be found  [here](https://mpv.io/manual/master/#files)
+
+```
+config/mpv
+│   input.conf
+│   mpv.conf
+│
+└───scripts
+        boxtowide.lua
+```
+
 ## How to uninstall
 The script doesn't write or alter configuration files, so removing the `boxtowide.lua` script from the mpv scripts folder is all that is needed to uninstall/disable.
 

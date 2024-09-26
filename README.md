@@ -1,11 +1,9 @@
 ## mpv-boxtowide
 This script will check if the video file has a 4:3 aspect ratio (box) and if so, it will change it to 16:9 (wide).
 
-It also supports auto aspect ratio change for URLs/Streams running with `youtube-dl/yt-dlp` on mpv.
+Its intended purpose is for videos or libraries with old 4:3 aspect ratio content. Instead of manually changing the aspect ratio, it will stretch it to 16:9 aspect ratio automatically.
 
-Its intended purpose is for videos or libraries with old 4:3 aspect ratio content. Instead of having black bars on the sides or manually changing the aspect ratio every time, it will stretch it to 16:9 aspect ratio automatically.
-
-Works well with a mixed aspect ratio playlist. It will only change the aspect ratio of 4:3 videos, leaving the rest to their default aspect ratio.
+I like to keep my [mpv configuration](https://github.com/Samillion/mpv-conf) simple, that is why I created this script to match my simple usecase.
 
 ## How to install
 Simply place `boxtowide.lua` in the corresponding mpv scripts location of your operating system:

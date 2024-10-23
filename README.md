@@ -1,4 +1,6 @@
 ## mpv-boxtowide
+![Terminal](https://github.com/user-attachments/assets/aee0410e-1110-4f07-9405-e4578eff6ebf)
+
 This script will check if the video file has a 4:3 aspect ratio (box) and if so, it will change it to 16:9 (wide).
 
 Its intended purpose is for videos or libraries with old 4:3 aspect ratio content. Instead of manually changing the aspect ratio, it will stretch it to 16:9 aspect ratio automatically.
@@ -26,6 +28,3 @@ config/mpv
 
 ## How to uninstall
 The script doesn't write or alter configuration files, so removing the `boxtowide.lua` script from the mpv scripts folder is all that is needed to uninstall/disable.
-
-## Preview
-![Terminal](https://github.com/user-attachments/assets/aee0410e-1110-4f07-9405-e4578eff6ebf)

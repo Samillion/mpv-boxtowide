@@ -1,5 +1,5 @@
 ## mpv-boxtowide
-![Terminal](https://github.com/user-attachments/assets/aee0410e-1110-4f07-9405-e4578eff6ebf)
+![Terminal](https://github.com/user-attachments/assets/ee932972-4b86-494d-973e-a286e6cdf078)
 
 This script detects if a video has a 4:3 aspect ratio and automatically adjusts it to 16:9 (wide).
 
@@ -14,8 +14,8 @@ local options = {
 
     -- usually 4:3 would only need 1.3333
     -- many old videos use weird ratios, this min/max range covers most of them
-    min_ratio = 1.28,         -- minimum aspect ratio for triggering change
-    max_ratio = 1.39,         -- maximum aspect ratio for triggering change
+    min_ratio = 1.28,
+    max_ratio = 1.39,
 }
 ```
 

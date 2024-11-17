@@ -17,6 +17,16 @@ local options = {
     -- many old videos use weird ratios, this min/max range covers most of them
     min_ratio = 1.28,
     max_ratio = 1.39,
+
+    -- file extensions the script will do a ratio check on
+    video_exts = {
+        "3g2", "3gp", "asf", "avi", "f4v", "flv", "m2t", "m2ts", "m4v", "mj2", 
+        "mkv", "mov", "mp4", "mpeg", "mpe", "mpg", "mts", "ogv", "rmvb", "ts", 
+        "webm", "wmv", "y4m"
+    },
+
+    -- regex to detect urls (for ytdl videos)
+    url_pattern = "^%a+://",
 }
 ```
 

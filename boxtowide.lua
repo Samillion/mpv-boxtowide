@@ -7,6 +7,16 @@
 
 --]]
 
+local options = {
+    -- target aspect ratio for conversion
+    target_ratio = "16:9",
+
+    -- usually 4:3 would only need 1.3333
+    -- many old videos use weird ratios, this min/max range covers most of them
+    min_ratio = 1.28,
+    max_ratio = 1.39,
+}
+
 local video_exts = {
     "3g2", "3gp", "asf", "avi", "f4v", "flv", "m2t", "m2ts", "m4v", "mj2", 
     "mkv", "mov", "mp4", "mpeg", "mpe", "mpg", "mts", "ogv", "rmvb", "ts", 
@@ -16,17 +26,18 @@ local video_exts = {
 local msg = require "mp.msg"
 
 local function box_ratio(_, value)
-    -- usually 4:3 would only need 1.3333
-    -- many old videos use weird ratios, this range covers most of them
-    if value and value >= 1.28 and value <= 1.39 then
-        local video_track = mp.get_property_native("current-tracks/video")
-        -- only apply on videos (second check in case of ytdl)
-        if video_track and not (video_track.image or video_track.albumart) then
-            mp.set_property("file-local-options/video-aspect-override", "16:9")
-            msg.info("Aspect-ratio changed from 4:3 to 16:9")
-            -- ensure single ratio check only per file
-            mp.unobserve_property(box_ratio)
+    if value then
+        if value >= options.min_ratio and value <= options.max_ratio then
+            local video_track = mp.get_property_native("current-tracks/video")
+            -- only apply on videos (second check in case of ytdl)
+            if video_track and not video_track.image then
+                mp.set_property("file-local-options/video-aspect-override", options.target_ratio)
+                msg.info("Video aspect-ratio changed from 4:3 to " .. options.target_ratio)
+            end
         end
+
+        -- ensure single ratio check per file
+        mp.unobserve_property(box_ratio)
     end
 end
 

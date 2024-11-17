@@ -15,12 +15,16 @@ local options = {
     -- many old videos use weird ratios, this min/max range covers most of them
     min_ratio = 1.28,
     max_ratio = 1.39,
-}
 
-local video_exts = {
-    "3g2", "3gp", "asf", "avi", "f4v", "flv", "m2t", "m2ts", "m4v", "mj2", 
-    "mkv", "mov", "mp4", "mpeg", "mpe", "mpg", "mts", "ogv", "rmvb", "ts", 
-    "webm", "wmv", "y4m"
+    -- file extensions the script will do a ratio check on
+    video_exts = {
+        "3g2", "3gp", "asf", "avi", "f4v", "flv", "m2t", "m2ts", "m4v", "mj2", 
+        "mkv", "mov", "mp4", "mpeg", "mpe", "mpg", "mts", "ogv", "rmvb", "ts", 
+        "webm", "wmv", "y4m"
+    },
+
+    -- regex to detect urls (for ytdl videos)
+    url_pattern = "^%a+://",
 }
 
 local msg = require "mp.msg"
@@ -49,14 +53,13 @@ local function create_set(t)
     return set
 end
 
-local list = create_set(video_exts)
+local list = create_set(options.video_exts)
 
 local function path_check()
     local path = mp.get_property("path", "")
     local ext = path:match("%.([^%.]+)$") or "nomatch"
 
-    -- regex would also match file://, but who uses that?
-    if list[ext:lower()] or path:match("^%a+://") then
+    if list[ext:lower()] or path:match(options.url_pattern) then
         mp.observe_property("video-params/aspect", "number", box_ratio)
     end
 end

@@ -59,7 +59,6 @@ local function path_check()
     local path = mp.get_property("path", "")
     local ext = path:match("%.([^%.]+)$") or "nomatch"
 
-    -- regex would also match file://, but who uses that?
     if list[ext:lower()] or path:match(options.url_pattern) then
         mp.observe_property("video-params/aspect", "number", box_ratio)
     end

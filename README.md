@@ -5,6 +5,20 @@ This script detects if a video has a 4:3 aspect ratio and automatically adjusts 
 
 It is designed for libraries with older 4:3 content, stretching them to 16:9 without manual intervention. The script aligns with my preference for a simple [mpv configuration](https://github.com/Samillion/mpv-conf) to fit this straightforward use case.
 
+## Options
+To adjust options, simply change the values inside `local options` within the script.
+
+```lua
+local options = {
+    target_ratio = "16:9",    -- target aspect ratio for conversion
+
+    -- usually 4:3 would only need 1.3333
+    -- many old videos use weird ratios, this min/max range covers most of them
+    min_ratio = 1.28,         -- minimum aspect ratio for triggering change
+    max_ratio = 1.39,         -- maximum aspect ratio for triggering change
+}
+```
+
 ## How to install
 Simply place `boxtowide.lua` in the corresponding mpv scripts location of your operating system:
 

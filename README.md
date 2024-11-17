@@ -10,7 +10,8 @@ To adjust options, simply change the values inside `local options` within the sc
 
 ```lua
 local options = {
-    target_ratio = "16:9",    -- target aspect ratio for conversion
+    -- target aspect ratio for conversion
+    target_ratio = "16:9",
 
     -- usually 4:3 would only need 1.3333
     -- many old videos use weird ratios, this min/max range covers most of them

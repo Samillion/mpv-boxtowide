@@ -20,13 +20,13 @@ local options = {
 
     -- file extensions the script will do a ratio check on
     video_exts = {
-        "3g2", "3gp", "asf", "avi", "f4v", "flv", "m2t", "m2ts", "m4v", "mj2", 
-        "mkv", "mov", "mp4", "mpeg", "mpe", "mpg", "mts", "ogv", "rmvb", "ts", 
-        "webm", "wmv", "y4m"
+        "3g2", "3gp", "asf", "avi", "f4v", "flv", "h264", "h265", "ivf", "m2t", "m2ts", 
+        "m4v", "mj2", "mkv", "mov", "mp4", "mp4v", "mpeg", "mpg", "mxf", "mts", "ogv", 
+        "rmvb", "ts", "webm", "wmv", "y4m"
     },
 
     -- regex to detect urls (for ytdl videos)
-    url_pattern = "^%a+://",
+    url_pattern = "^[%a][%a%d+.-]*://",
 }
 ```
 

@@ -28,21 +28,26 @@ local options = {
 }
 
 local msg = require "mp.msg"
+local checked = false
 
 local function box_ratio(_, value)
-    if value then
-        if value >= options.min_ratio and value <= options.max_ratio then
-            local video_track = mp.get_property_native("current-tracks/video")
-            -- only apply on videos (second check in case of ytdl)
-            if video_track and not video_track.image then
-                mp.set_property("file-local-options/video-aspect-override", options.target_ratio)
-                msg.info("Video aspect-ratio changed from 4:3 to " .. options.target_ratio)
-            end
-        end
+    if checked or not value then return end
+    checked = true
 
-        -- ensure single ratio check per file
-        mp.unobserve_property(box_ratio)
+    if value >= options.min_ratio and value <= options.max_ratio then
+        local video_track = mp.get_property_native("current-tracks/video")
+        -- only apply on videos (second check in case of ytdl)
+        if video_track and not video_track.image then
+            mp.set_property(
+                "file-local-options/video-aspect-override",
+                options.target_ratio
+            )
+            msg.info("Video aspect-ratio changed from 4:3 to " .. options.target_ratio)
+        end
     end
+
+    -- ensure single ratio check per file
+    mp.unobserve_property(box_ratio)
 end
 
 local function create_set(t)
@@ -56,6 +61,7 @@ end
 local list = create_set(options.video_exts)
 
 local function path_check()
+    checked = false
     local path = mp.get_property("path", "")
     local ext = path:match("%.([^%.]+)$") or "nomatch"
 

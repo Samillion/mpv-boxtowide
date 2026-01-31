@@ -1,5 +1,5 @@
 ## mpv-boxtowide
-![Terminal](https://github.com/user-attachments/assets/ee932972-4b86-494d-973e-a286e6cdf078)
+<img width="1483" height="302" alt="Terminal" src="https://github.com/user-attachments/assets/da6aa810-f25f-4793-8067-0c9f1a08f120" />
 
 This script detects if a video has a 4:3 aspect ratio and automatically adjusts it to 16:9 (wide).
 

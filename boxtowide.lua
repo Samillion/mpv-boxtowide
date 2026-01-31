@@ -24,7 +24,7 @@ local options = {
     },
 
     -- regex to detect urls (for ytdl videos)
-    url_pattern = "^%a+://",
+    url_pattern = "^[%a][%a%d+.-]*://",
 }
 
 local msg = require "mp.msg"

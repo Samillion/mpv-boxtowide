@@ -8,47 +8,38 @@
 --]]
 
 local options = {
-    -- file extensions the script will do a ratio check on
-    -- separate each extension with a comma
+    -- file extensions the script will check
+    -- separate each with a comma
     video_exts = "3gp,asf,avi,flv,m4v,mkv,mov,mp4,mp4v,mpeg,mpg,mts,ogv,rmvb,ts,webm,wmv",
 
     -- target aspect ratio for conversion
     -- common ratios:
-    -- 4:3 (1.3333), 16:9 (1.7778), 16:10 (1.6),
-    -- 1.85:1, 2.00:1, 2.20:1,
-    -- 2.35:1, 2.39:1 (modern scope), 2.76:1
+    -- 4:3 (1.3333), 16:9 (1.7778), 16:10 (1.6)
+    -- 1.85:1, 2.00:1, 2.20:1, 2.35:1, 2.39:1, 2.76:1
     target_ratio = "16:9",
 
     -- ratio check type (one or both can be used)
-    -- use range min_ratio -> max_ratio check
+    -- check if aspect is within min_ratio to max_ratio
     range_check = true,
 
-    -- use accurate_ratio + accurate_tolerance
+    -- check if aspect matches accurate_ratio + accurate_tolerance
     accurate_check = true,
 
-    -- usually 4:3 would only need 1.3333
-    -- many old videos use weird ratios, this min/max range covers most of them
+    -- many old videos use weird ratios; usually 4:3 is ~1.3333
     min_ratio = 1.28,
     max_ratio = 1.39,
 
-    -- a precise ratio check (decimal form)
-    -- instead of relying only on a min/max range
     -- common decimal ratios:
-    -- 1.3333 (4:3), 1.7778 (16:9), 1.6 (16:10),
-    -- 1.5 (3:2), 1.25 (5:4),
-    -- 1.85 (1.85:1), 2.0 (2.00:1),
+    -- 1.3333 (4:3), 1.7778 (16:9), 1.6 (16:10)
+    -- 1.5 (3:2), 1.25 (5:4), 1.85 (1.85:1), 2.0 (2.00:1)
     -- 2.35 (2.35:1), 2.39 (2.39:1 scope)
-    -- to disable accurate check, set to 0
     accurate_ratio = 1.3333,
 
-    -- allowed difference for accurate_ratio comparison
-    -- example: with accurate_ratio = 1.3333 and accurate_tolerance = 0.01,
-    -- values from 1.3233 to 1.3433 will match.
-    -- Set to 0 to require exact match
+    -- allowed deviation; 0 = exact match
     accurate_tolerance = 0.01,
 
-    -- regex to detect urls (for ytdl videos)
-    -- a simpler pattern: "^%a+://"
+    -- regex to detect urls (e.g. ytdl videos)
+    -- simpler pattern: "^%a+://"
     url_pattern = "^[%a][%a%d+.-]*://",
 }
 
